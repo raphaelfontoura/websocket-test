@@ -1,0 +1,1 @@
+web: java -jar target/websocket-test-0.0.1-SNAPSHOT.jar
