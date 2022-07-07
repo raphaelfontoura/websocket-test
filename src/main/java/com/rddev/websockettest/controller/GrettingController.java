@@ -5,12 +5,10 @@ import com.rddev.websockettest.model.HelloMessage;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.annotation.SendToUser;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.util.HtmlUtils;
 
 import java.security.Principal;
-import java.security.Timestamp;
 import java.time.LocalDateTime;
 
 @Controller
@@ -29,4 +27,11 @@ public class GrettingController {
         Thread.sleep(2000);
         return new Greeting("["+LocalDateTime.now() + "] To me : "+ HtmlUtils.htmlEscape(message.getName()));
     }
+
+    @MessageMapping("/private")
+    public Greeting messageToUser(HelloMessage message, String username) throws InterruptedException {
+        Thread.sleep(2000);
+        return new Greeting("["+LocalDateTime.now() + "] To me : "+ HtmlUtils.htmlEscape(message.getName()));
+    }
+
 }
